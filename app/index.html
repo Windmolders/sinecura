@@ -12,10 +12,11 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="styles/bootstrap-custom.css">
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
@@ -24,8 +25,67 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <div id="wrap">
+
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#/" class="navbar-brand">Sine Cura</a>
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#/pictures">Pictures </a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" id="streams">Streams <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="streams">
+                            <li><a href="#/streams">All</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#/stream/kivvi88">Kivvi88</a></li>
+                            <li><a href="#/stream/zupa">Zupa</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#/info">Guild Info</a>
+                    </li>
+                    <li>
+                        <a href="#/forum">Forum</a>
+                    </li>
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a ng-click="signIn()">Sign In</a></li>
+                    <li><a href="#/">Sign Up</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+
+
     <!-- Add your site or application content here -->
     <div class="container" ng-view=""></div>
+
+    </div>
+
+    <div id="footer">
+        <div class="container">
+            <div class="col-sm-6">
+                <p class="text-muted credit">Developed by <a href="#/" class="me">Jonas "Zupa" Windmolders</a> with ♥.</p>
+            </div>
+            <div class="col-sm-6">
+                <p class="footer-title text-muted"> Sine Cura</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -58,6 +118,14 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/streams.js"></script>
+        <script src="scripts/controllers/pictures.js"></script>
+        <script src="scripts/controllers/picture.js"></script>
+        <script src="scripts/controllers/members.js"></script>
+        <script src="scripts/controllers/member.js"></script>
+        <script src="scripts/controllers/info.js"></script>
+        <script src="scripts/controllers/forum.js"></script>
+        <script src="scripts/controllers/signup.js"></script>
         <!-- endbuild -->
 </body>
 </html>

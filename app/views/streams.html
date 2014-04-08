@@ -1,0 +1,18 @@
+
+<div class="main-logo text-center">
+    <img src="images/eso.png"/>
+</div>
+
+<div class="content-container">
+    <h3 class="title2">Guild Streams!</h3>
+</div>
+
+<div class="content-container">
+    <div class="row">
+        <div class="col-sm-4" ng-repeat="streamer in streamers">
+             <a href="#/stream/{{streamer.name}}" class="item-stream" ><img src="images/no-image.png" class="col-xs-6" /><div class="col-xs-6"><span>{{streamer.displayname}}</span> 's Stream <span> {{streamer.online}}</span></div></a>
+         </div>
+
+
+    </div>
+</div>

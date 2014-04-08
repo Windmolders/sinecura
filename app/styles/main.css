@@ -1,79 +1,171 @@
-/* Space out content a bit */
+@font-face {
+    font-family: "pragmatica-web";
+    src: url("../fonts/ufonts.com_pragmatica_condensed.ttf");
+}
+
+@font-face {
+    font-family: "tes";
+    src: url("../fonts/Planewalker.ttf");
+}
+
+html,
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
+body{
+    font-family: "pragmatica-web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: #1e1e1e;
+    color: #fff;
+    background-repeat: no-repeat;
+    font-size: 14px;
+    cursor: default;
+    padding-top: 70px;
+    -webkit-font-smoothing: antialiased;
+    background: url(../images/elf-breton-v2-optimized-964a9e056a3a7bf075e15fb219e07136.jpg) center 40px no-repeat,url(../images/backgrounds/bg-body-33ef5ef2f94081faf9f775c5f03cc998.png) top center repeat-y,#7b6f59;
 }
 
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-}
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px;
-  padding-bottom: 19px;
-}
-
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by its height */
+    margin: 0 auto -60px;
+    /* Pad bottom by footer height */
+    padding: 0 0 60px;
 }
 
-/* Customize container */
-@media (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-}
-.container-narrow > hr {
-  margin: 30px 0;
+/* Set the fixed height of the footer here */
+#footer {
+    min-height: 60px;
+    background-color: #000000;
+    color: #eeeeee;
 }
 
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
+#wrap > .container {
+    padding: 20px 50px 0;
 }
-.jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
+.container .credit {
+    margin: 20px 0;
 }
 
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-}
-.marketing p + h4 {
-  margin-top: 28px;
+#footer > .container {
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
+code {
+    font-size: 80%;
+
+}
+
+h3, .h3 {
+    font-size: 24px;
+}
+
+.title3{
+color: #b8a779;
+font-weight: 700;
+}
+
+.title2{
+    font-family: "tes",sans-serif;
+    font-style:normal;
+    font-weight: bolder;
+    height: 48px;
+    line-height: 48px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    color: #8f5015;
+    background: url("../images/btn-left.png") top left no-repeat,url("../images/btn-right.png") top right no-repeat;
+    padding: 0 20px;
+    font-size: 25px;
+    text-transform: uppercase;
+    text-align: center;
+    margin:0;
+    width:100%;
+}
+.footer-title{
+    font-family: "tes",sans-serif;
+    font-style:normal;
+    font-weight: bolder;
+    color: #b8a779;
+    background: url("../images/btn-left.png") top left no-repeat,url("../images/btn-right.png") top right no-repeat;
+    height: 48px;
+    line-height: 48px;
+    font-size:25px;
+    text-align: center;
+    position:relative;
+    margin-top:10px;
+    margin-bottom:0 ;
+}
+
+.content-container{
+    width: 100%;
+    margin: 0 auto;
+    margin-top:20px;
+    padding: 20px;
+    color: black;
+    background: rgba(255,249,235,0.6);
+    z-index: 2;
+    position: relative;
+
+}
+
+a,a:hover, a.visited{
+    text-decoration: none;
+    color: #b8a779;
+    cursor: pointer;
+}
+.me{
+    font-weight: 700;
+}
+
+.main-logo{}
+
+.navbar-brand{
+    font-family: "tes";
+    font-size: 30px;
+}
+
+.item{
+    display:block;
+    padding:0;
+}
+
+#main-item-1{
+    background-image: url("../images/ss.png") ;
+    background-size:contain;
+}
+
+#main-item-2{
+    background-image: url("../images/stream.jpg") ;
+    background-size:contain;
+}
+
+#main-item-3{
+    background-image: url("../images/ss.png") ;
+    background-size:contain;
+}
+
+.item div{
+
+    color:black;
+    font-size: 25px;
+    font-weight: bold;
+    background: rgba(255,249,235,0.6);
+    text-align: center;
+    font-family: "tes";
+    padding-top:5px;
+}
+
+.item-stream{
+    display:block;
+    background-color: #ffffff !important;
+    color:white;
 }

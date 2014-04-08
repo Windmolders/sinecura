@@ -1,0 +1,30 @@
+
+<div class="main-logo text-center">
+    <img src="images/eso.png"/>
+</div>
+
+<div class="content-container">
+    <h3 class="title2">{{who}}'s Stream</h3>
+</div>
+
+<div class="content-container">
+    <div class="row">
+        <div class="col-sm-9">
+            <object type="application/x-shockwave-flash" height="378" width="100%" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel={{who}}" bgcolor="#000000"><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="allowNetworking" value="all" /><param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" /><param name="flashvars" value="hostname=www.twitch.tv&channel={{who}}&auto_play=true&start_volume=25" /></object><a href="http://www.twitch.tv/{{who}}" style="padding:2px 0px 4px; display:block;">Watch live video from {{who}} on www.twitch.tv</a>
+        </div>
+        <div class="col-sm-3">
+            <iframe
+            frameborder="0"
+            scrolling="no"
+            id="chat_embed"
+            ng-src="{{chat}}"
+            height="378px"
+            width="100%"></iframe>
+        </div>
+        <script>
+            var cw = $('.item').width();
+            $('.item').css({'height':cw+'px'});
+        </script>
+    </div>
+</div>
+
