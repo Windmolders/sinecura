@@ -23,7 +23,7 @@ body{
     cursor: default;
     padding-top: 70px;
     -webkit-font-smoothing: antialiased;
-    background: url(../images/elf-breton-v2-optimized-964a9e056a3a7bf075e15fb219e07136.jpg) center 40px no-repeat,url(../images/backgrounds/bg-body-33ef5ef2f94081faf9f775c5f03cc998.png) top center repeat-y,#7b6f59;
+    background: url(../images/elf-breton-v2-optimized-964a9e056a3a7bf075e15fb219e07136.jpg) center 40px no-repeat,url(../images/bg-body-33ef5ef2f94081faf9f775c5f03cc998.png) top center repeat-y,#7b6f59;
 }
 
 /* Wrapper for page content to push down footer */
@@ -81,11 +81,10 @@ font-weight: 700;
     -ms-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
-    color: #8f5015;
+    color: #4e4227;
     background: url("../images/btn-left.png") top left no-repeat,url("../images/btn-right.png") top right no-repeat;
     padding: 0 20px;
     font-size: 25px;
-    text-transform: uppercase;
     text-align: center;
     margin:0;
     width:100%;
@@ -166,6 +165,101 @@ a,a:hover, a.visited{
 
 .item-stream{
     display:block;
-    background-color: #ffffff !important;
+    background: rgba(0,0,0,0.8);
     color:white;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.title4{
+    text-transform: uppercase;
+    color: #413723;
+    border-bottom: 1px solid #948159;
+    padding-bottom: 15px;
+    font-size:20px;
+    font-weight: bold;
+}
+
+.undertext{
+    text-transform: uppercase;
+    font-size:14px;
+    color: #666666;
+}
+
+.thumbnail{
+    width:auto !important;
+    max-width: 100%;
+    max-height:240px;
+
+}
+
+.link-thumb{
+    position:relative;
+    display:block;
+    height:250px;
+}
+
+.image-title{
+    position:absolute;
+    width:100%;
+    top:0;
+    left:0;
+    text-transform: uppercase;
+    padding:10px;
+    text-align: center;
+    background: rgba(255,249,235,0.6);
+    color:black;
+
+}
+
+.single-image{
+    width:100%;
+}
+
+.arrows{
+    width:100%;
+    cursor: pointer;
+}
+
+.margin-top10{
+    margin-top:10px;
+}
+.margin-bot10{
+    margin-bottom:10px;
+}
+
+
+.stream-text{
+    text-transform: uppercase;
+    font-size:20px;
+}
+
+.small-stream-text{
+    text-transform: uppercase;
+    font-size:10px;
+}
+
+.float-r{
+    float:right;
+}
+
+.float-l{
+    float:left;
+}
+
+.btn-warning{
+    background-color: #948159;
+    border-color:#948159;
+}
+
+.preview{
+    max-width:95%;
+    max-height:200px;
+    margin-bottom: 20px;
+}
+
+.eso-label{
+    text-transform: uppercase;
+    color: #4e4227;
+    font-weight: bold;
 }

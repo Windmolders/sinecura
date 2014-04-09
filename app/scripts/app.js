@@ -4,7 +4,8 @@ angular.module('sinecuraApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'caco.ClientPaginate'
 ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -24,9 +25,13 @@ angular.module('sinecuraApp', [
         templateUrl: 'views/pictures.html',
         controller: 'PicturesCtrl'
       })
-      .when('/picture/:id/:name', {
+      .when('/picture/:id/:lid/:name', {
         templateUrl: 'views/picture.html',
         controller: 'PictureCtrl'
+      })
+      .when('/picture', {
+            templateUrl: 'views/picture.html',
+            controller: 'PictureCtrl'
       })
       .when('/members', {
         templateUrl: 'views/members.html',
@@ -48,6 +53,10 @@ angular.module('sinecuraApp', [
         templateUrl: 'views/signup.html',
         controller: 'SignupCtrl'
       })
+      .when('/upload', {
+        templateUrl: 'views/upload.html',
+        controller: 'UploadCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -61,4 +70,55 @@ angular.module('sinecuraApp', [
 
 
 
-  });
+  }).filter('getById', function() {
+    return function(input, id) {
+        var i=0, len=input.length;
+        for (; i<len; i++) {
+            if (+input[i].id == +id) {
+                return input[i];
+            }
+        }
+        return null;
+    }
+}).filter('reverse', function() {
+        function toArray(list) {
+            var k, out = [];
+            if( list ) {
+                if( angular.isArray(list) ) {
+                    out = list;
+                }
+                else if( typeof(list) === 'object' ) {
+                    for (k in list) {
+                        if (list.hasOwnProperty(k)) { out.push(list[k]); }
+                    }
+                }
+            }
+            return out;
+        }
+        return function(items) {
+            return toArray(items).slice().reverse();
+        };
+    }).filter('customSort',function(){
+    function sort (a, b) {
+        if (a < b) { return 1; }
+        if (a > b) { return -1; }
+
+        return 0;
+    }
+
+    return function(arrInput, prop) {
+        var arr = arrInput.sort(function(a, b) {
+            return sort(+a[prop], +b[prop]);
+        });
+        return arr;
+    }
+}).directive('myAdSense', function() {
+    return {
+        restrict: 'A',
+        transclude: true,
+        replace: true,
+        template: '<div ng-transclude></div>',
+        link: function ($scope, element, attrs) {}
+    }
+});
+

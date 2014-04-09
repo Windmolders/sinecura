@@ -1,1 +1,23 @@
-<p>This is the pictures view.</p>
+
+<div class="content-container">
+    <h3 class="title2">Guild Pictures</h3>
+</div>
+
+<div class="content-container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="title4">Uploaded pictures</div>
+            <div class="clearfix undertext margin-bot10">
+                <span class="float-l">By guild members</span>
+                <a class="float-r btn btn-warning " href="#/upload"> Submit a picture </a>
+            </div>
+        </div>
+
+        <div class="col-sm-12 text-center"><paginator></paginator></div>
+
+
+        <div class="col-sm-4" ng-repeat="pic in images | paginate"><a href="#/picture/{{pic.id}}/{{$index}}/{{pic.title}}" class="link-thumb"><img class="thumbnail" src="{{pic.link}}" /><div class="image-title">{{pic.title}}</div></a></div>
+
+    </div>
+</div>
+

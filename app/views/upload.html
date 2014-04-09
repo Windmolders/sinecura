@@ -1,0 +1,41 @@
+
+<div class="content-container">
+    <h3 class="title2">Guild Pictures</h3>
+</div>
+
+<div class="content-container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="title4">Upload a picture</div>
+            <div class="clearfix undertext margin-bot10">
+                <span class="float-l">By {{user.name}}</span>
+                <a class="float-r btn btn-warning" ng-click=""> Submit this picture </a>
+            </div>
+        </div>
+
+        <div>
+
+            <div class="col-sm-4">
+                <img src="{{link}}" class="preview" />
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="link" class="eso-label">Image URL</label>
+                    <input type="text" class="form-control" placeholder="http://www.a.com/pic.png" ng-model="link" id="link"/>
+                </div>
+                <div class="form-group">
+                    <label for="title" class="eso-label">Image Title</label>
+                    <input type="text" class="form-control" placeholder="The Victory of Zupa" ng-model="title" id="title"/>
+                </div>
+
+            </div>
+
+
+            <div class="col-xs-12 eso-label">Only external images are allowed. You can NOT upload pictures to the website. You'll need another hosting server to host the picture. (eg imgur.com)  </div>
+        </div>
+
+
+
+    </div>
+</div>
+
