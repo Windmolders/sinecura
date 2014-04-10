@@ -65,13 +65,17 @@ angular.module('sinecuraApp', [
       .otherwise({
         redirectTo: '/'
       });
-  }).run(function($rootScope,$modal,$log){
+  }).run(function($rootScope,$modal,$templateCache){
 
         $( window ).resize(function() {
             var cw = $('.item').width();
             $('.item').css({'height':cw+'px'});
         });
-
+/*
+        $rootScope.$on('$viewContentLoaded', function() {
+            $templateCache.removeAll();
+        });
+*/
         $rootScope.user = {};
 
         $rootScope.items = ['item1', 'item2', 'item3'];
