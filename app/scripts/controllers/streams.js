@@ -5,7 +5,7 @@ angular.module('sinecuraApp')
     $scope.who = $routeParams.who;
 
     $scope.streamers=[{name: "kivvi88", displayname: "Kiwi",online: "Offline",logo:"images/no-image.png"},{name:"zupalicious", displayname: "Zupa",online: "Offline",logo:"images/no-image.png"}
-    ,{name: "kivvi88", displayname: "Kiwi",online: "Offline",logo:"images/no-image.png"},{name:"zupalicious", displayname: "Zupa",online: "Offline",logo:"images/no-image.png"}]
+   ]
 
 
 
@@ -15,9 +15,11 @@ angular.module('sinecuraApp')
             if (c.stream == null) {
                 $scope.streamers[wie].online = "Offline";
 
+
             } else {
 
                 $scope.streamers[wie].online = "Online";
+
 
             }
             $scope.$apply();

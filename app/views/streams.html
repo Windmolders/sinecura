@@ -8,12 +8,13 @@
     <div class="row">
         <div class="col-sm-6 margin-bot10" ng-repeat="streamer in streamers | orderBy: streamer.online">
              <a href="#/stream/{{streamer.name}}" class="item-stream clearfix" >
-                 <img src="{{streamer.logo}}" class="col-xs-3" />
+                 <div class="col-xs-3"><img src="{{streamer.logo}}" class="stream-image" ></div>
+
                  <div class="col-xs-9">
                      <div class="stream-text">{{streamer.displayname}}</div>
                      <div class="small-stream-text">{{streamer.title}}</div>
                      <div class="small-stream-text">{{streamer.game}}</div>
-                     <div class="stream-text">{{streamer.online}}</div>
+                     <div class="stream-text online" ng-class="{'green-text' : streamer.online == 'Online'}">{{streamer.online}}</div>
                  </div>
              </a>
          </div>

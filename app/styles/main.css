@@ -165,10 +165,14 @@ a,a:hover, a.visited{
 
 .item-stream{
     display:block;
-    background: rgba(0,0,0,0.8);
+    background-color:#413723;
     color:white;
     padding-top:10px;
     padding-bottom:10px;
+}
+
+.item-stream:hover{
+    background: rgba(0,0,0,0.8);
 }
 
 .title4{
@@ -262,4 +266,111 @@ a,a:hover, a.visited{
     text-transform: uppercase;
     color: #4e4227;
     font-weight: bold;
+}
+
+.eso-tab{
+    text-transform: uppercase;
+    background-color: #4e4227;
+    color:white;
+    font-weight: bold;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+    background-color: #4e4227;
+    border:none;
+}
+
+.nav > li > a, .nav > li > a {
+    text-decoration: none;
+    background-color: #413723;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #413723;
+}
+
+.login-form{
+    width:70%;
+    margin:auto;
+    margin-top:150px;
+}
+
+.modal-content{
+    border:none;
+    box-shadow: none;
+    max-width: 400px;
+    height: 500px;
+    background:none;
+    background-image:url("../images/loginbgl.png");
+    background-repeat: no-repeat;
+}
+
+.login-input{
+    background-color:#413723;
+    color: #eeeeee;
+}
+
+.login-input:focus{
+    border-color:#222222;
+}
+
+.stream-image{
+    width:95px;
+    height:95px;
+    border: 2px solid  #4e4227;
+}
+
+.green-text{
+    color: green !important;
+}
+
+.online{
+    color:red;
+}
+.panel-heading{
+    background-color:#413723 !important;
+    color:white !important;
+    border:none !important;
+}
+
+.panel{
+    background: none;
+    border-color:transparent;
+}
+
+.panel-body{
+
+    background:none ;
+
+    border:none !important;
+}
+
+.panel-heading{padding:0;}
+
+.paddingtrick20{
+   display:block;
+    width:100%;
+    height:20px;
+}
+
+.padding-top20 {
+    padding-top: 20px;
+}
+
+.accordion-toggle{
+    width:100% !important;
+}
+
+.panel-title a, .panel-title a span {
+    display:block;
+    width:100%;
+}
+
+.panel-title a span {
+    padding:10px;
+}
+
+.no-padding{
+    padding:0;
 }

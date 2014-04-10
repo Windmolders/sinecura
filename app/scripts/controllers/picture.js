@@ -5,12 +5,12 @@ angular.module('sinecuraApp')
 
         $scope.images = [
             {id:0,owner:"Zupa", title:"PVP", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
-            {id:2,owner:"kiwwi88", title:"PVe", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
-            {id:4,owner:"Zupa", title:"test", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
-            {id:6,owner:"Zupa", title:"dsfqsf", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
-            {id:8,owner:"Zupa", title:"aer", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
-            {id:10,owner:"Zupa", title:"dfsqf", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
-            {id:12,owner:"Zupa", title:"aer", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"}
+            {id:1,owner:"Zupa", title:"Dominion", link:"images/dominion.jpg"},
+            {id:2,owner:"Zupa", title:"PVP", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
+            {id:3,owner:"Zupa", title:"PVP", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
+            {id:4,owner:"Zupa", title:"PVP", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
+            {id:5,owner:"Zupa", title:"PVP", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
+            {id:6,owner:"Zupa", title:"PVP", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"}
         ];
 
     $scope.image={};

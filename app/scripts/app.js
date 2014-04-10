@@ -5,6 +5,7 @@ angular.module('sinecuraApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
+  'ui.bootstrap',
   'caco.ClientPaginate'
 ])
   .config(function ($routeProvider) {
@@ -57,20 +58,52 @@ angular.module('sinecuraApp', [
         templateUrl: 'views/upload.html',
         controller: 'UploadCtrl'
       })
+      .when('/account', {
+        templateUrl: 'views/account.html',
+        controller: 'AccountCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
-  }).run(function($rootScope){
+  }).run(function($rootScope,$modal,$log){
 
         $( window ).resize(function() {
             var cw = $('.item').width();
             $('.item').css({'height':cw+'px'});
         });
 
+        $rootScope.user = {};
+
+        $rootScope.items = ['item1', 'item2', 'item3'];
+
+
+        $rootScope.user.id = null;
+        $rootScope.user.name = null;
+        $rootScope.user.token = null;
+        $rootScope.user.logged = false;
+
+        $rootScope.openLogin = function(){
+            var modalInstance = $modal.open({
+                templateUrl: 'login.html',
+                controller: ModalInstanceCtrl,
+                resolve: {
+                    items: function () {
+                        return $rootScope.items;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (loginItem) {
+                $rootScope.loginUser = loginItem;
+            }, function () {
+
+            });
+        };
 
 
 
-  }).filter('getById', function() {
+
+    }).filter('getById', function() {
     return function(input, id) {
         var i=0, len=input.length;
         for (; i<len; i++) {
@@ -122,3 +155,14 @@ angular.module('sinecuraApp', [
     }
 });
 
+
+var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
+
+    $scope.ok = function () {
+        $modalInstance.close($scope.login);
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+};

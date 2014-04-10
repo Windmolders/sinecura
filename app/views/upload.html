@@ -9,16 +9,22 @@
             <div class="title4">Upload a picture</div>
             <div class="clearfix undertext margin-bot10">
                 <span class="float-l">By {{user.name}}</span>
-                <a class="float-r btn btn-warning" ng-click=""> Submit this picture </a>
+                <a class="float-r btn btn-warning" ng-if="user.logged" ng-click="upload()"> Submit this picture </a>
             </div>
         </div>
+        <div class="col-xs-12">
+            <div class="alert alert-danger hidden" id="picture-alert">You must have a valid picture link and title.</div>
+        </div>
 
+        <div class="col-xs-12" ng-if="user.logged == false">
+            <div class="alert alert-danger">You mustbe logged in to use this feature.</div>
+        </div>
         <div>
 
             <div class="col-sm-4">
                 <img src="{{link}}" class="preview" />
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8" ng-if="user.logged">
                 <div class="form-group">
                     <label for="link" class="eso-label">Image URL</label>
                     <input type="text" class="form-control" placeholder="http://www.a.com/pic.png" ng-model="link" id="link"/>

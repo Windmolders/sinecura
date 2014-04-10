@@ -1,0 +1,262 @@
+
+<div class="content-container">
+
+    <div class="row">
+    <div class="col-xs-12">
+        <div class="title4">Your Account</div>
+    </div>
+
+    <div class="col-xs-12" ng-if="user.logged == false">
+        <div class="alert alert-danger">You must be logged in to use this feature.</div>
+    </div>
+
+    </div>
+    <div class="paddingtrick20"> </div>
+    <accordion close-others="true">
+
+        <accordion-group >
+            <accordion-heading>
+                Account
+            </accordion-heading>
+
+            <div class="col-sm-4 text-center">
+                <img src="images/d-banner.png" class="preview" />
+                <img src="images/profileman.png" class="preview" />
+
+            </div>
+            <div class="col-sm-8" ng-if="user.logged">
+                <div class="form-group">
+                    <label for="acc" class="eso-label">Account name</label>
+                    <input type="text" class="form-control" ng-model="user.name" readonly="readonly"/>
+                </div>
+                <div class="form-group">
+                    <label for="accn" class="eso-label">Account e-mail</label>
+                    <input type="text" class="form-control"  ng-model="account.email" readonly="readonly"/>
+                </div>
+                <div class="form-group">
+                    <label for="accp1" class="eso-label">New Password</label>
+                    <input type="text" class="form-control"  ng-model="change.pass1" id="accp1"/>
+                </div>
+                <div class="form-group">
+                    <label for="accp2" class="eso-label">Repeat Password</label>
+                    <input type="text" class="form-control"  ng-model="change.pass2" id="accp2"/>
+                </div>
+                <div class="form-group">
+                   <a ng-click="changePass()" class="btn btn-warning btn-sm">Change Password</a>
+                </div>
+            </div>
+
+
+        </accordion-group>
+
+
+        <accordion-group >
+            <accordion-heading>
+                <span style="width:90%">Characters</span>
+            </accordion-heading>
+
+            <tabset justified="true">
+                <tab ng-repeat="char in characters">
+                    <tab-heading class="eso-tab clearfix"><div class="col-xs-12"><img src="images/{{char.race}}.png" style="width:80%; max-width:100px;" /></div><div class="col-xs-12">{{char.name}}</div></tab-heading>
+                    <div>
+                        <div class="form-group margin-top10">
+                            <label for="acc" class="eso-label">Charachter name</label>
+                            <input type="text" class="form-control" ng-model="char.name"  />
+                        </div>
+                        <div class="form-group">
+                            <label for="accn" class="eso-label">Alliance</label>
+                            <select class="form-control"  ng-model="char.region">
+                                <option value="Aldmeri Dominion">Aldmeri Dominion</option>
+                                <option value="Daggerfall Covenant">Daggerfall Covenant</option>
+                                <option value="Ebonheart Pact">Ebonheart Pact</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="accp1" class="eso-label">Race</label>
+                                <select class="form-control"  ng-model="char.race" >
+                                    <option value="Argonian">Argonian</option>
+                                    <option value="Dunmer">Dunmer</option>
+                                    <option value="Nord">Nord</option>
+                                    <option value="Altmer">Altmer</option>
+                                    <option value="Bosmer">Bosmer</option>
+                                    <option value="Khajiit">Khajiit</option>
+                                    <option value="Breton">Breton</option>
+                                    <option value="Orc">Orc</option>
+                                    <option value="Redguard">Redguard</option>
+                                    <option value="Imperial">Imperial</option>
+                                </select>
+                        </div>
+                        <div class="form-group">
+
+                            <label for="accp2" class="eso-label">Class</label>
+
+                            <select class="form-control"  ng-model="char.class" >
+                                <option value="Templar">Templar</option>
+                                <option value="Dragon Knight">Dragon Knight</option>
+                                <option value="Sorcerer">Sorcerer</option>
+                                <option value="Nightblade">Nightblade</option>
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+
+                                <label for="accp2" class="eso-label">PVP Campaign</label>
+
+                            <select class="form-control"  ng-model="char.pvp" >
+                                <option value="Bloodthorn">Bloodthorn</option>
+                                <option value="Scourge">Scourge</option>
+                                <option value="Chrysamere">Chrysamere</option>
+                                <option value="Auriels Bow">Auriels Bow</option>
+                                <option value="Wabbajack">Wabbajack</option>
+                                <option value="Volendrung">Volendrung</option>
+                                <option value="Skull Crusher">Skull Crusher</option>
+                                <option value="Dawnbreaker">Dawnbreaker</option>
+                                <option value="Goldbrand">Goldbrand</option>
+                                <option value="Hopesfire">Hopesfire</option>
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="accn" class="eso-label">Level</label>
+                            <input type="number" min="0" class="form-control"  ng-model="char.level" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="accn" class="eso-label">Titles</label>
+                            <input type="text"  class="form-control"  ng-model="add.proff" placeholder="Zupa's Bitch"/>
+                            <a ng-click="addprof($index)" class="btn btn-sm btn-warning">Add Title</a>
+                        </div>
+
+                        <div class="form-group">
+                            <ul>
+                                <li ng-repeat="tit in char.titles">
+                                    <a ng-click="del($parent.$index,$index)" class="btn btn-sm btn-danger">Delete</a> - {{tit}}
+
+                                </li>
+
+
+
+                            </ul>
+
+                        </div>
+
+                        <div class="form-group">
+                           <a ng-click="resave()" class="btn btn-warning" >Save {{char.name}}</a>
+                        </div>
+
+                    </div>
+                </tab>
+
+                <tab>
+                    <tab-heading class="eso-tab clearfix"><div class="col-xs-12"><img src="images/white-plus.png" style="width:80%; max-width:100px;" /></div><div class="col-xs-12">New Character</div></tab-heading>
+                    <div>
+                        <div class="form-group margin-top10">
+                            <label for="acc" class="eso-label">Character name</label>
+                            <input type="text" class="form-control" ng-model="new.name" id="acc" />
+                        </div>
+                        <div class="form-group">
+                            <label for="accn" class="eso-label">Alliance</label>
+
+                            <select class="form-control"  ng-model="new.region">
+                                <option value="Aldmeri Dominion">Aldmeri Dominion</option>
+                                <option value="Daggerfall Covenant">Daggerfall Covenant</option>
+                                <option value="Ebonheart Pact">Ebonheart Pact</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="accp1" class="eso-label">Race</label>
+                            <select class="form-control"  ng-model="new.race" id="accp1">
+                            <option value="Argonian">Argonian</option>
+                            <option value="Dunmer">Dunmer</option>
+                            <option value="Nord">Nord</option>
+
+                            <option value="Altmer">Altmer</option>
+                            <option value="Bosmer">Bosmer</option>
+                            <option value="Khajiit">Khajiit</option>
+
+                            <option value="Breton">Breton</option>
+                            <option value="Orc">Orc</option>
+                            <option value="Redguard">Redguard</option>
+
+                            <option value="Imperial">Imperial</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                        <label  class="eso-label">Class</label>
+
+
+                        <select class="form-control"  ng-model="new.class" >
+                            <option value="Templar">Templar</option>
+                            <option value="Dragon Knight">Dragon Knight</option>
+                            <option value="Sorcerer">Sorcerer</option>
+                            <option value="Nightblade">Nightblade</option>
+                        </select>
+                        </div>
+
+
+                        <div class="form-group">
+
+                                <label for="accp2" class="eso-label">PVP Campaign</label>
+
+                            <select class="form-control"  ng-model="new.pvp" >
+                                <option value="Bloodthorn">Bloodthorn</option>
+                                <option value="Scourge">Scourge</option>
+                                <option value="Chrysamere">Chrysamere</option>
+                                <option value="Auriels Bow">Auriels Bow</option>
+                                <option value="Wabbajack">Wabbajack</option>
+                                <option value="Volendrung">Volendrung</option>
+                                <option value="Skull Crusher">Skull Crusher</option>
+                                <option value="Dawnbreaker">Dawnbreaker</option>
+                                <option value="Goldbrand">Goldbrand</option>
+                                <option value="Hopesfire">Hopesfire</option>
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="accn" class="eso-label">Level</label>
+                            <input type="number" min="0" class="form-control"  ng-model="new.level" />
+                        </div>
+                        <div class="form-group">
+                        <a ng-click="addNewCharacter()" class="btn btn-warning">Save New Character</a>
+                        </div>
+
+                    </div>
+                </tab>
+            </tabset>
+
+        </accordion-group>
+
+        <accordion-group >
+            <accordion-heading>
+                <span style="width:90%">Pictures</span>
+            </accordion-heading>
+
+            <a href="#/upload" class="btn btn-warning float-r btn-sm">Add a picture</a>
+
+            <div class="col-sm-12 text-center"><paginator></paginator></div>
+            <div class="col-sm-4" ng-repeat="pic in images | paginate"><a href="#/picture/{{pic.id}}/{{$index}}/{{pic.title}}" class="link-thumb"><img class="thumbnail" src="{{pic.link}}" /><div class="image-title">{{pic.title}}</div></a></div>
+
+
+        </accordion-group>
+
+
+    </accordion>
+
+
+
+        <div>
+
+
+
+
+            </div>
+
+
+
+
+</div>
+

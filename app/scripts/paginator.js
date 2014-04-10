@@ -29,7 +29,7 @@ angular.module('caco.ClientPaginate', [])
 
     .service('Paginator', function ($rootScope) {
         this.page = 0;
-        this.rowsPerPage = 3;
+        this.rowsPerPage = 9;
         this.itemCount = 0;
 
         this.setPage = function (page) {

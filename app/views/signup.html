@@ -1,1 +1,54 @@
-<p>This is the signup view.</p>
+
+<div class="content-container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="title4">SIgnup for an Account</div>
+            <div class="clearfix undertext margin-bot10">
+
+            </div>
+        </div>
+
+        <div>
+
+            <div class="col-sm-4 text-center">
+                <img src="images/d-banner.png" class="preview" />
+                <img src="images/profileman.png" class="preview" />
+            </div>
+            <div class="col-sm-8" >
+                <div class="form-group">
+                    <label for="acc" class="eso-label">Account name</label>
+                    <input type="text" class="form-control" ng-model="reg.name" id="acc"/>
+                </div>
+                <div class="form-group">
+                    <label for="accn" class="eso-label">Account e-mail</label>
+                    <input type="text" class="form-control"  ng-model="reg.email" id="accn"/>
+                </div>
+                <div class="form-group">
+                    <label for="accp1" class="eso-label">Account Password</label>
+                    <input type="text" class="form-control"  ng-model="reg.pass1" id="accp1"/>
+                </div>
+                <div class="form-group">
+                    <label for="accp2" class="eso-label">Repeat Password</label>
+                    <input type="text" class="form-control"  ng-model="reg.pass2" id="accp2"/>
+                </div>
+
+                <div class="form-group">
+                    <a class="btn btn-warning btn-sm btn-"  ng-click="singUp()">Sign Up</a>
+                </div>
+
+
+            <ul class="col-xs-12 eso-label">
+            <li>Your password will be encrypted twice for maximum safety (Client and server side).  </li>
+            <li>Only subscribe when you are a member to the guild. You will be verified before you show up as a member.  </li>
+            <li>Account name is your Login name, Display and Character names can be added later. </li>
+            </ul>
+
+
+
+        </div>
+
+
+        </div>
+    </div>
+</div>
+
