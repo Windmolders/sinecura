@@ -16,12 +16,18 @@
             </div>
             <div class="col-sm-8" >
                 <div class="form-group">
+                   <div class="alert alert-danger" >{{message}}</div>
+                </div>
+                <div class="form-group">
                     <label for="acc" class="eso-label">Account name</label>
                     <input type="text" class="form-control" ng-model="reg.name" id="acc"/>
                 </div>
                 <div class="form-group">
                     <label for="accn" class="eso-label">Account e-mail</label>
                     <input type="text" class="form-control"  ng-model="reg.email" id="accn"/>
+                </div>
+                <div class="form-group">
+                    <div class="alert alert-danger" >{{error}}</div>
                 </div>
                 <div class="form-group">
                     <label for="accp1" class="eso-label">Account Password</label>

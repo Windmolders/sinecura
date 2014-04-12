@@ -67,6 +67,8 @@ angular.module('sinecuraApp', [
       });
   }).run(function($rootScope,$modal,$templateCache){
 
+        $rootScope.serverURL = "http://www.technologytalking.com/sinecura/php/";
+
         $( window ).resize(function() {
             var cw = $('.item').width();
             $('.item').css({'height':cw+'px'});
@@ -168,5 +170,15 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
 
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
+    };
+
+    $scope.login = function (){
+    $http.post($rootScope.serverURL+"login.php",{cache: false}) //{"lat": $scope.location.latitude, "lng":$scope.location.longitude})
+        .success(function(data, status, headers, config) {
+            $scope.message = data.message;
+
+        }).error(function(data, status, headers, config) {
+            alert("Could not reach the Jupiler database. Do you have an internet connection?");
+        });
     };
 };
