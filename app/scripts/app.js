@@ -6,7 +6,8 @@ angular.module('sinecuraApp', [
   'ngSanitize',
   'ngRoute',
   'ui.bootstrap',
-  'caco.ClientPaginate'
+  'caco.ClientPaginate',
+  'angularLocalStorage'
 ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -62,10 +63,14 @@ angular.module('sinecuraApp', [
         templateUrl: 'views/account.html',
         controller: 'AccountCtrl'
       })
+      .when('/characters', {
+        templateUrl: 'views/characters.html',
+        controller: 'CharactersCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
-  }).run(function($rootScope,$modal,$templateCache){
+  }).run(function($rootScope,$modal,$templateCache, storage){
 
         $rootScope.serverURL = "http://www.technologytalking.com/sinecura/php/";
 
@@ -78,15 +83,17 @@ angular.module('sinecuraApp', [
             $templateCache.removeAll();
         });
 */
-        $rootScope.user = {};
+        $rootScope.userdef = {id : null, name: null, token: null, logged:false};
 
-        $rootScope.items = ['item1', 'item2', 'item3'];
+        storage.bind($rootScope,'user',{defaultValue: $rootScope.userdef}); // Dit linkt de variabelen met localstorage , je moet dit zelf niet meer updaten.
 
 
-        $rootScope.user.id = null;
-        $rootScope.user.name = null;
-        $rootScope.user.token = null;
-        $rootScope.user.logged = false;
+        $rootScope.logOut = function() {
+            $rootScope.user.id = null;
+            $rootScope.user.name = null;
+            $rootScope.user.token = null;
+            $rootScope.user.logged = false;
+        };
 
         $rootScope.openLogin = function(){
             var modalInstance = $modal.open({
@@ -162,7 +169,9 @@ angular.module('sinecuraApp', [
 });
 
 
-var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
+var ModalInstanceCtrl = function ($scope, $modalInstance, $rootScope ,$http) {
+
+    $scope.logindata = {};
 
     $scope.ok = function () {
         $modalInstance.close($scope.login);
@@ -173,12 +182,56 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
     };
 
     $scope.login = function (){
-    $http.post($rootScope.serverURL+"login.php",{cache: false}) //{"lat": $scope.location.latitude, "lng":$scope.location.longitude})
-        .success(function(data, status, headers, config) {
-            $scope.message = data.message;
 
-        }).error(function(data, status, headers, config) {
-            alert("Could not reach the Jupiler database. Do you have an internet connection?");
-        });
+        $scope.logindata={};
+
+        $scope.logindata.name = $("#namelog").val();
+        $scope.logindata.password = $("#passlog").val();
+
+
+        $('.progress-indicator').css( 'display', 'block' );
+
+
+            var config = {
+                url: $rootScope.serverURL+"login.php",
+                method: 'POST',
+                data: {
+                    name: $scope.logindata.name,
+                    password:$scope.logindata.password
+                },
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+
+            $http(config)
+                .success(function(data,status,headers,config){
+
+
+
+                        $scope.logmessage = data.message;
+
+                       if($scope.logmessage != "Wrong credentials."){
+
+                        $rootScope.user.id = data.id;
+                        $rootScope.user.name = data.name;
+                        $rootScope.user.token = data.token;
+
+                          $rootScope.user.logged = true;
+
+
+                        $scope.cancel();
+
+                       }
+
+
+
+                    $('.progress-indicator').css( 'display', 'none' );
+                })
+                .error(function(data,status,headers,config){
+                    $scope.logmessage = data.message;
+                    $('.progress-indicator').css( 'display', 'none' );
+                });
+
+
+
     };
 };

@@ -1,24 +1,50 @@
 'use strict';
 
 angular.module('sinecuraApp')
-  .controller('PictureCtrl', function ($scope,$routeParams,$filter) {
+  .controller('PictureCtrl', function ($scope,$routeParams,$filter ,$rootScope,$http) {
 
         $scope.images = [
-            {id:0,owner:"Zupa", title:"PVP", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
-            {id:1,owner:"Zupa", title:"Dominion", link:"images/dominion.jpg"},
-            {id:2,owner:"Zupa", title:"PVP", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
-            {id:3,owner:"Zupa", title:"PVP", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
-            {id:4,owner:"Zupa", title:"PVP", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
-            {id:5,owner:"Zupa", title:"PVP", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
-            {id:6,owner:"Zupa", title:"PVP", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"}
+
         ];
+
+        var config = {
+            url: $rootScope.serverURL+"pictures.php",
+            method: 'POST',
+            data: {            },
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }
+
+        $http(config)
+            .success(function(data,status,headers,config){
+
+                $scope.images = data;
+
+                $scope.changePic();
+
+                $('.progress-indicator').css( 'display', 'none' );
+            })
+            .error(function(data,status,headers,config){
+                alert("error loading images");
+            });
 
     $scope.image={};
 
 
     $scope.changePic = function(){
-        $scope.image.id = $routeParams.id;
-        $scope.image = $filter('getById')($scope.images, $scope.image.id);
+
+
+        for(var i = 0; i< $scope.images.length; i++){
+
+
+
+            if($scope.images[i].id == $routeParams.id){
+            $scope.image = $scope.images[i];
+            }
+
+        };
+
+
+
         $scope.image.idenx = $scope.images.indexOf($scope.image);
     };
 
@@ -43,6 +69,6 @@ angular.module('sinecuraApp')
         }
         $scope.changePicIndex(indexke);
     };
-    $scope.changePic();
+
 
 });

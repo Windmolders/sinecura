@@ -1,0 +1,127 @@
+
+<div class="content-container">
+    <h3 class="title2">Member List</h3>
+</div>
+
+<div class="content-container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="title4">Registered Members</div>
+            <div class="clearfix undertext margin-bot10">
+                <span class="float-l">Sine Cura</span>
+
+            </div>
+        </div>
+
+
+
+        <div style="padding-top: 20px;padding-bottom:20px;">
+
+
+
+
+
+
+
+        <div class="col-sm-12 text-center eso-label" > Search Members: <input class="form-control" ng-model="searchText" placeholder="filter"></div>
+
+
+        <table class="table table-striped">
+
+            <tr class="text-center eso-label">
+
+                <th> # </th>
+                <th> veteranRank </th>
+                <th> accName </th>
+                <th> rankId </th>
+                <th> classId </th>
+
+                <th> note </th>
+
+
+            </tr>
+
+            <tr ng-repeat="char2 in guildchars | filter:searchText2">
+
+                <td class="text-center eso-label"><a href="#/member/{{char.owner}}/" class="eso-label"> {{$index}} </a></td>
+
+                <td class="text-center eso-label"><a href="#/member/{{char.owner}}/" class="eso-label"> {{char.name}} </a></td>
+
+                <td class="text-center eso-label"><a href="#/member/{{char.owner}}/" class="eso-label"> {{char.accName}} </a></td>
+
+                <td class="text-center eso-label"><a href="#/member/{{char.owner}}/" class="eso-label"> {{char.rankId}} </a></td>
+
+                <td class="text-center eso-label"><a href="#/member/{{char.owner}}/" class="eso-label"> {{char.classId}} </a></td>
+
+                <td class="text-center eso-label"><a href="#/member/{{char.owner}}/" class="eso-label"> {{char.note}}</td>
+            </tr>
+
+        </table>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="col-sm-12 text-center eso-label" > Search Members: <input class="form-control" ng-model="searchText" placeholder="filter"></div>
+
+        <div class="col-sm-12 text-center"><paginator></paginator></div>
+
+        <table class="table table-striped">
+
+            <tr class="text-center eso-label">
+
+            <th> # </th>
+            <th> Char </th>
+            <th> Owner </th>
+            <th> Race </th>
+            <th> Class </th>
+            <th> Region </th>
+            <th> Level </th>
+            <th> PVP </th>
+            <th> Titles </th>
+
+
+            </tr>
+
+            <tr ng-repeat="char in characters | paginate | filter:searchText">
+
+                <td class="text-center eso-label"><a href="#/member/{{char.owner}}/" class="eso-label"> {{$index}} </a></td>
+
+                <td class="text-center eso-label"><a href="#/member/{{char.owner}}/" class="eso-label"> {{char.name}} </a></td>
+
+                <td class="text-center eso-label"><a href="#/member/{{char.owner}}/" class="eso-label"> {{char.owner}} </a></td>
+
+                <td class="text-center eso-label"><a href="#/member/{{char.owner}}/" class="eso-label"> {{char.race}} </a></td>
+
+                <td class="text-center eso-label"><a href="#/member/{{char.owner}}/" class="eso-label"> {{char.class}} </a></td>
+
+                <td class="text-center eso-label"><a href="#/member/{{char.owner}}/" class="eso-label"> {{char.region}} </a></td>
+
+                <td class="text-center eso-label"><a href="#/member/{{char.owner}}/" class="eso-label"> {{char.level}} </a></td>
+
+                <td class="text-center eso-label"><a href="#/member/{{char.owner}}/" class="eso-label"> {{char.pvp}} </a></td>
+
+                <td class="text-center eso-label"><a href="#/member/{{char.owner}}/" class="eso-label"> <span ng-repeat="tit in char.titles">{{tit}}</br></span> </a></td>
+            </tr>
+
+        </table>
+
+
+
+    </div>
+</div>
+

@@ -13,34 +13,28 @@ include "condb.php";
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-$name = $data["name"];
-$password = md5($data["password"]);
-
-$return["message"] = "";
+$return;
 
 include "condb.php";
 
-$check = "select * from login where name = '" . $name ."' AND password = '".$password."'";
+$check = "select * from pictures";
 
 $already = mysql_query($check);
 
 if(mysql_num_rows($already) > 0){
-
-    $return["message"] = 'Logged in';
+    $count = 0;
 
     while ($row = mysql_fetch_assoc($already))
     {
-        $return["id"] = $row['id'];
-        $return["name"] = $row['name'];
-        $return["token"] = $row['token'];
+        $return[$count]["id"] = $count;
+        $return[$count]["owner"] = $row['owner'];
+        $return[$count]["title"] = $row['title'];
+        $return[$count]["link"] = $row['link'];
+        $count++;
     }
 
 
 }
-else{
 
-    $return["message"] = 'Wrong credentials.';
-
-}
 
 echo json_encode($return);

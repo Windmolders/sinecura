@@ -148,7 +148,7 @@ a,a:hover, a.visited{
 }
 
 #main-item-3{
-    background-image: url("../images/ss.png") ;
+    background-image: url("../images/dom.png") ;
     background-size:contain;
 }
 
@@ -373,4 +373,25 @@ a,a:hover, a.visited{
 
 .no-padding{
     padding:0;
+}
+
+.progress-indicator {
+    top:0;
+    right:0;
+    width:100%;
+    height:100%;
+    position:fixed;
+    text-align:center;
+    /* IE filter */
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+    -moz-opacity:0.5;    /* Mozilla extension */
+    -khtml-opacity:0.5;  /* Safari/Conqueror extension */
+    opacity:0.5; /* CSS3 */
+    z-index:1000;
+    background-color:black;
+    display:none;
+}
+
+.progress-indicator img {
+    margin-top:75px;
 }

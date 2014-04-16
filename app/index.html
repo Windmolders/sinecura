@@ -6,9 +6,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>Sine Cura</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+      <link rel="shortcut icon" type="image/png" href="images/eso_logo.png">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
@@ -21,6 +22,12 @@
     <!-- endbuild -->
   </head>
   <body ng-app="sinecuraApp">
+
+  <div class="progress-indicator">
+      <img src="images/icon_loading_75x75.gif" alt="" />
+  </div>
+
+
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -52,7 +59,13 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#/info">Guild Info</a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" id="guild">Guild Info <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="guild">
+                            <li><a href="#/news">News</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#/members">Members</a></li>
+                            <li><a href="#/characters">Characters</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="#/forum">Forum</a>
@@ -66,7 +79,7 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right" ng-if="user.logged">
-                    <li><a href="#/account">Account</a></li>
+                    <li><a href="#/account">Account {{user.name}}</a></li>
                     <li><a ng-click="logOut()">Sign Off</a></li>
                 </ul>
 
@@ -103,17 +116,21 @@
 
                     <div class="login-form">
                     <div class="form-group">
-                        <label for="emaillog" class="eso-label">E-mail</label>
-                        <input type="email" class="login-input form-control" ng-model="login.mail" id="emaillog" />
+                        <label for="emaillog" class="eso-label">Username</label>
+                        <input type="text" class="login-input form-control"  id="namelog" />
                     </div>
 
                     <div class="form-group">
                         <label for="passlog" class="eso-label">Password</label>
-                        <input type="password" class="login-input form-control" ng-model="login.pass" id="passlog" />
+                        <input type="password" class="login-input form-control" id="passlog" />
+                    </div>
+
+                    <div class="form-group">
+                          <label  class="eso-label">{{logmessage}}</label>
                     </div>
 
                     <div>
-                        <a ng-click="" class="float-r btn btn-warning btn-sm">Log In</a>
+                        <a ng-click="login()" class="float-r btn btn-warning btn-sm">Log In</a>
                     <div>
 
                     </div>
@@ -153,6 +170,7 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/Angular-localStorage/src/angularLocalStorage.js"></script>
     <!-- endbower -->
 
     <!-- endbuild -->
@@ -171,6 +189,7 @@
         <script src="scripts/controllers/signup.js"></script>
         <script src="scripts/controllers/upload.js"></script>
         <script src="scripts/controllers/account.js"></script>
+        <script src="scripts/controllers/characters.js"></script>
         <!-- endbuild -->
 </body>
 </html>

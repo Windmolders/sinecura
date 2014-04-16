@@ -1,1 +1,34 @@
-<p>This is the members view.</p>
+
+<div class="content-container">
+    <h3 class="title2">Member List</h3>
+</div>
+
+<div class="content-container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="title4">Registered Members</div>
+            <div class="clearfix undertext margin-bot10">
+                <span class="float-l">Sine Cura</span>
+
+            </div>
+        </div>
+
+        <div class="col-sm-12 text-center eso-label" > Search Members: <input class="form-control" ng-model="searchText" placeholder="filter"></div>
+
+        <div class="col-sm-12 text-center"><paginator></paginator></div>
+
+        <table class="table table-striped">
+
+            <tr ng-repeat="mem in members | paginate | filter:searchText">
+
+              <td class="text-center"><a href="#/member/{{mem.name}}/" class="eso-label"> {{mem.name}} </a></td>
+
+            </tr>
+
+        </table>
+
+
+
+    </div>
+</div>
+

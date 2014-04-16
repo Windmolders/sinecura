@@ -1,16 +1,18 @@
 'use strict';
 
 angular.module('sinecuraApp')
-  .controller('MemberCtrl', function ($scope,$rootScope,$http,$routeParams) {
+  .controller('CharactersCtrl', function ($scope,$rootScope,$http) {
 
 
         $scope.characters = [];
-        $scope.images = [];
+        $scope.allcharacters = [];
+
+        $scope.guildchars = [];
 
         var config = {
-            url: $rootScope.serverURL+"chars.php",
+            url: $rootScope.serverURL+"allchars.php",
             method: 'POST',
-            data: {   wie: $routeParams.name },
+            data: {  },
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }
 
@@ -18,39 +20,56 @@ angular.module('sinecuraApp')
             .success(function(data,status,headers,config){
 
 
-                if(data.length > 0){
+                    $scope.allcharacters = data;
 
-                    $scope.characters = data;
 
+                    $scope.devide();
+
+
+
+                $('.progress-indicator').css( 'display', 'none' );
+            })
+            .error(function(data,status,headers,config){
+                alert("error loading images");
+            });
+
+
+        var config = {
+            url: $rootScope.serverURL+"guildchars.php",
+            method: 'POST',
+            data: {  },
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }
+
+        $http(config)
+            .success(function(data,status,headers,config){
+
+
+                $scope.guildchars = data;
+
+
+                $scope.devide();
+
+
+
+                $('.progress-indicator').css( 'display', 'none' );
+            })
+            .error(function(data,status,headers,config){
+                alert("error loading images");
+            });
+
+
+        $scope.devide = function(){
+
+            for(var i = 0; i < $scope.allcharacters.length; i++  ){
+
+                for (var j = 0; j < $scope.allcharacters[i].length; j++){
+
+                   $scope.characters.push($scope.allcharacters[i][j]);
 
                 }
 
-                $('.progress-indicator').css( 'display', 'none' );
-            })
-            .error(function(data,status,headers,config){
-                alert("error loading images");
-            });
+            }
 
-
-        var config = {
-            url: $rootScope.serverURL+"pictureseach.php",
-            method: 'POST',
-            data: {   wie: $routeParams.name  },
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        }
-
-        $http(config)
-            .success(function(data,status,headers,config){
-
-                $scope.images = data;
-
-
-                $('.progress-indicator').css( 'display', 'none' );
-            })
-            .error(function(data,status,headers,config){
-                alert("error loading images");
-            });
-
-
-
-    });
+        };
+  });

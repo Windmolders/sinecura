@@ -1,27 +1,86 @@
 'use strict';
 
 angular.module('sinecuraApp')
-  .controller('AccountCtrl', function ($scope,$rootScope) {
-    $scope.user = $rootScope.user;
-
-        $scope.user.logged = true;
+  .controller('AccountCtrl', function ($scope,$rootScope,$http) {
 
         $scope.add = {};
         $scope.new = {};
-
-
+        $scope.userdata = {};
         $scope.images = [
-            {id:0,owner:"Zupa", title:"PVP", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
-            {id:1,owner:"Zupa", title:"Dominion", link:"images/dominion.jpg"},
-            {id:2,owner:"Zupa", title:"PVP", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
-            {id:3,owner:"Zupa", title:"PVP", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
-            {id:4,owner:"Zupa", title:"PVP", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
-            {id:5,owner:"Zupa", title:"PVP", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"},
-            {id:6,owner:"Zupa", title:"PVP", link:"http://elderscrollsonline.info/images/site/pvp/pvp-objectives.jpg"}
+            {}
         ];
 
-        $scope.characters = [{owner: 0, name: "Zupalicious", race:"Imperial", class:"Dragon Knight", region: "Aldmeri Dominion",level:31, pvp: "Dawnbreaker", titles:["Guild member" ,"Officer" ,"Tank", "Blacksmith"]}
-        ,{owner: 0, name: "ZUpa", race:"Nord", class:"Templar", region: "Aldmeri Dominion",level:31, pvp: "Dawnbreaker", titles:["Guild member" ,"Officer" ,"Tank", "Blacksmith"]}];
+        $scope.characters = [];
+
+        var config = {
+            url: $rootScope.serverURL+"userdata.php",
+            method: 'POST',
+            data: {   wie: $rootScope.user.name  },
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }
+
+        $http(config)
+            .success(function(data,status,headers,config){
+                $scope.userdata = data[0];
+
+                $('.progress-indicator').css( 'display', 'none' );
+            })
+            .error(function(data,status,headers,config){
+                alert("error loading images");
+            });
+
+
+        var config = {
+            url: $rootScope.serverURL+"pictureseach.php",
+            method: 'POST',
+            data: {   wie: $rootScope.user.name  },
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }
+
+        $http(config)
+            .success(function(data,status,headers,config){
+
+                $scope.images = data;
+
+
+                $('.progress-indicator').css( 'display', 'none' );
+            })
+            .error(function(data,status,headers,config){
+                alert("error loading images");
+            });
+
+
+
+        var config = {
+            url: $rootScope.serverURL+"chars.php",
+            method: 'POST',
+            data: {   wie: $rootScope.user.name  },
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }
+
+        $http(config)
+            .success(function(data,status,headers,config){
+
+
+
+                if(data.length > 0){
+
+                $scope.characters = data;
+
+
+
+                }
+
+                $('.progress-indicator').css( 'display', 'none' );
+            })
+            .error(function(data,status,headers,config){
+                alert("error loading images");
+            });
+
+
+
+
+
 
         $scope.newTitles = [];
 
@@ -52,12 +111,26 @@ angular.module('sinecuraApp')
 
         };
 
+        $scope.delchar =function(ind){
+
+            $scope.characters.splice(ind,1);
+            $scope.savedata();
+        };
+
 
         $scope.addNewCharacter = function(){
 
+            $scope.canAdd = true;
+            for(var i = 0; i <  $scope.characters.length ; i++){
+                if($scope.characters[i].name == $scope.new.name){
+                    $scope.canAdd = false;
+                }
+            }
+
+            if($scope.canAdd == true){
 
             var newChar = {
-                owner: $rootScope.user.id,
+                owner: $rootScope.user.name,
                 name: $scope.new.name,
                 race: $scope.new.race,
                 region: $scope.new.region,
@@ -66,12 +139,27 @@ angular.module('sinecuraApp')
                 pvp: $scope.new.pvp,
                 titles:
                     [
-                        "Guild Applicant"
+                        "Guild Member"
                     ]
             };
 
+
+
+
             $scope.characters.push(newChar);
-            $scope.$apply();
+
+                $scope.savedata();
+
+
+
+
+
+            }else{
+                alert("Char already exists");
+            }
+
+
+
 
         }
 
@@ -86,4 +174,26 @@ angular.module('sinecuraApp')
                 this.$apply(fn);
             }
         };
+
+        $scope.savedata = function(){
+            var config = {
+                url: $rootScope.serverURL+"savechars.php",
+                method: 'POST',
+                data: {owner: $rootScope.user.name , data: $scope.characters} ,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+
+            $http(config)
+                .success(function(data,status,headers,config){
+
+                    $('.progress-indicator').css( 'display', 'none' );
+                })
+                .error(function(data,status,headers,config){
+                    alert("error saving");
+                    $('.progress-indicator').css( 'display', 'none' );
+                });
+        };
+
+
+
   });

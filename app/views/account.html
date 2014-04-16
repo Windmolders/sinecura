@@ -12,7 +12,7 @@
 
     </div>
     <div class="paddingtrick20"> </div>
-    <accordion close-others="true">
+    <accordion close-others="true" ng-if="user.logged">
 
         <accordion-group >
             <accordion-heading>
@@ -24,24 +24,24 @@
                 <img src="images/profileman.png" class="preview" />
 
             </div>
-            <div class="col-sm-8" ng-if="user.logged">
+            <div class="col-sm-8" >
                 <div class="form-group">
-                    <label for="acc" class="eso-label">Account name</label>
-                    <input type="text" class="form-control" ng-model="user.name" readonly="readonly"/>
+                    <label  class="eso-label">Account name</label>
+                    <input type="text" class="form-control" ng-model="userdata.name" readonly="readonly"/>
                 </div>
                 <div class="form-group">
-                    <label for="accn" class="eso-label">Account e-mail</label>
-                    <input type="text" class="form-control"  ng-model="account.email" readonly="readonly"/>
+                    <label  class="eso-label">Account e-mail</label>
+                    <input type="text" class="form-control"  ng-value="userdata.email" readonly="readonly"/>
                 </div>
-                <div class="form-group">
-                    <label for="accp1" class="eso-label">New Password</label>
-                    <input type="text" class="form-control"  ng-model="change.pass1" id="accp1"/>
+                <div class="form-group"  ng-if="userdata.nam == 'z'">
+                    <label  class="eso-label">New Password</label>
+                    <input type="text" class="form-control"  ng-model="change.pass1" />
                 </div>
-                <div class="form-group">
-                    <label for="accp2" class="eso-label">Repeat Password</label>
-                    <input type="text" class="form-control"  ng-model="change.pass2" id="accp2"/>
+                <div class="form-group"  ng-if="userdata.nam == 'z'">
+                    <label  class="eso-label">Repeat Password</label>
+                    <input type="text" class="form-control"  ng-model="change.pass2" />
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-if="userdata.nam == 'z'">
                    <a ng-click="changePass()" class="btn btn-warning btn-sm">Change Password</a>
                 </div>
             </div>
@@ -50,7 +50,7 @@
         </accordion-group>
 
 
-        <accordion-group >
+        <accordion-group ng-if="user.logged">
             <accordion-heading>
                 <span style="width:90%">Characters</span>
             </accordion-heading>
@@ -143,7 +143,10 @@
                         </div>
 
                         <div class="form-group">
-                           <a ng-click="resave()" class="btn btn-warning" >Save {{char.name}}</a>
+                        <a ng-click="savedata()" class="btn btn-warning" >Save {{char.name}}</a>
+                    </div>
+                        <div class="form-group">
+                            <a ng-click="delchar($index)" class="btn btn-warning float-r" >Delete {{char.name}}</a>
                         </div>
 
                     </div>
@@ -222,6 +225,7 @@
                         </div>
                         <div class="form-group">
                         <a ng-click="addNewCharacter()" class="btn btn-warning">Save New Character</a>
+
                         </div>
 
                     </div>

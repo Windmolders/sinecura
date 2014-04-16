@@ -9,7 +9,7 @@
             <div class="title4">Upload a picture</div>
             <div class="clearfix undertext margin-bot10">
                 <span class="float-l">By {{user.name}}</span>
-                <a class="float-r btn btn-warning" ng-if="user.logged" ng-click="upload()"> Submit this picture </a>
+                <a class="float-r btn btn-warning" ng-if="user.logged" ng-click="upload(uplink,uptitle)"> Submit this picture </a>
             </div>
         </div>
         <div class="col-xs-12">
@@ -17,21 +17,21 @@
         </div>
 
         <div class="col-xs-12" ng-if="user.logged == false">
-            <div class="alert alert-danger">You mustbe logged in to use this feature.</div>
+            <div class="alert alert-danger">You must be logged in to use this feature.</div>
         </div>
-        <div>
+        <div  ng-if="user.logged">
 
             <div class="col-sm-4">
-                <img src="{{link}}" class="preview" />
+                <img src="{{uplink}}" class="preview" />
             </div>
-            <div class="col-sm-8" ng-if="user.logged">
+            <div class="col-sm-8">
                 <div class="form-group">
-                    <label for="link" class="eso-label">Image URL</label>
-                    <input type="text" class="form-control" placeholder="http://www.a.com/pic.png" ng-model="link" id="link"/>
+                    <label class="eso-label">Image URL</label>
+                    <input type="text" class="form-control" ng-model="uplink" placeholder="http://www.a.com/pic.png" id="uplink" />
                 </div>
                 <div class="form-group">
-                    <label for="title" class="eso-label">Image Title</label>
-                    <input type="text" class="form-control" placeholder="The Victory of Zupa" ng-model="title" id="title"/>
+                    <label  class="eso-label">Image Title</label>
+                    <input type="text" class="form-control" ng-model="uptitle" placeholder="The Victory of Zupa"  id="uptitle"/>
                 </div>
 
             </div>

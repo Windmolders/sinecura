@@ -1,30 +1,48 @@
 'use strict';
 
 angular.module('sinecuraApp')
-  .controller('UploadCtrl', function ($scope,$rootScope) {
+  .controller('UploadCtrl', function ($scope,$rootScope,$http) {
 
+        $scope.uplink = null;
+        $scope.uptitle = null;
 
-        $scope.user = $rootScope.user;
+        $scope.upload = function(thelink, thetitle){
 
-        $scope.user.logged = true;
-
-    $scope.doAlert = function(){
-        alert("test");
-    };
-
-    $scope.upload = function(){
-        if($scope.url != null && $scope.title != null){
-            $("#picture-alert").addClass("hidden");
-
-            //ajax;
+            thelink = $("#uplink").val();
+            thetitle = $("#uptitle").val();
 
 
 
-        }
-        else{
-            $("#picture-alert").removeClass("hidden");
-        }
-    };
+            if(thelink != "" && thetitle != ""){
+
+                $("#picture-alert").addClass("hidden");
+
+                var config = {
+                    url: $rootScope.serverURL+"upload.php",
+                    method: 'POST',
+                    data: { owner: $rootScope.user.name, title: thetitle, link:thelink  },
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }
+
+                $http(config)
+                    .success(function(data,status,headers,config){
+                        $('.progress-indicator').css( 'display', 'none' );
+                        alert("Picture uploaded");
+                    })
+                    .error(function(data,status,headers,config){
+                        alert("error loading images");
+                    });
 
 
-  });
+
+
+
+            }
+            else{
+                $("#picture-alert").removeClass("hidden");
+            }
+        };
+
+
+
+    });
