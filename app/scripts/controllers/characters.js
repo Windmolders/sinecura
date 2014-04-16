@@ -48,7 +48,6 @@ angular.module('sinecuraApp')
                 $scope.guildchars = data;
 
 
-                $scope.devide();
 
 
 
